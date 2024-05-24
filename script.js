@@ -24,13 +24,18 @@ function addProduct() {
   //4. เพิ่มเข้าไปในอาร์เรย์สินค้า แต่ต้องเช็ดว่า 1. ใส่ข้อมูลตรงตาม type ไหม 2. ไฟล์รูปถูกต้องไหม (สร้างฟังก์ชันเชค ไฟล์รูปด้านล่างตามข้อ 6.)
   //  >> ต้องขอบคุณ mini project ของพี่ลักษณ์ที่พาผมเช็คสินค้าจนละเอียดเลยครับ ^_^  นำมาปรับใช้ได้ดีเลยครับ<<
 
-  if (typeof productName !== 'string' || !productName) {
-    alert('Warning: Product ID must be a string and filled');
+  if (
+    typeof productName !== 'string' ||
+    !productName ||
+    productName.length < 3 ||
+    productName > 255
+  ) {
+    alert('Warning: Product ID must be filled between 3 and 255 characters');
   } else if (isNaN(productPrice) || productPrice <= 0) {
     alert('Warning: Product price must be a number and filled');
-  } else if (!isValidImageUrl(productImage)) {
+  } else if (!isValidUrl(productImage) || !isValidImageUrl(productImage)) {
     alert(
-      'Warning: Product image URL must be a file with a .jpg, .png, or .gif'
+      'Warning: Invalid URL, product image URL must be a file with a .jpg, .png, or .gif'
     );
   } else {
     //5. ถ้าตรงตามเงื่อนไขก็ เรียกใช้ฟังก์ชัน renderProduct(product) ที่จะไปสร้างข้างล่างครับ
@@ -41,14 +46,19 @@ function addProduct() {
   document.getElementById('input-form').reset();
 }
 
-// 6. สร้างฟังก์ชั่นเพื่อตรวจสอบว่าไฟล์รูป "ลงท้ายด้วย" ใช้ method endswith() เช็คว่าไฟล์ลงท้ายด้วยนามสกุลเหล่านี้ไหม
+// 6. สร้างฟังก์ชั่น 2 ฟังก์ชั่นเพื่อตรวจสอบว่าไฟล์รูป 1). เป็น URL ที่่ valid ไหม  isValidUrl(url)
+//2). "ลงท้ายด้วย" ใช้ isValidImageUrl เช็คว่าไฟล์ลงท้ายด้วยนามสกุลเหล่านี้ไหม jpg|jpeg|png|gif
+
 function isValidImageUrl(url) {
-  return (
-    url.endsWith('.jpg') ||
-    url.endsWith('.jpeg') ||
-    url.endsWith('.png') ||
-    url.endsWith('.gif')
-  );
+  // Regular expression for URL validation with specific file extensions
+  const urlPattern = /\.(jpg|jpeg|png|gif)$/i;
+  return urlPattern.test(url);
+}
+
+function isValidUrl(url) {
+  // Regular expression for URL validation
+  const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+  return urlPattern.test(url);
 }
 
 // 7. ฟังก์ชั่นนี้เรียกใช้ตอนที่ผู้ใช้กดปุ่มเพิ่มสินค้าเข้ามายังจุดพักสินค้า
