@@ -1,4 +1,4 @@
-// แอพคำนวณราคาผมมี 4 ส่วนครับ ฟอร์มให้ผู้ใช้กรอก // จุดพักสินค้า // ตะกร้าสินค้า // และ การคำนวณ
+// แอพคำนวณราคาผมมี 4 ส่วนครับ  ฟอร์มให้ผู้ใช้กรอก // จุดพักสินค้า // ตะกร้าสินค้า // และ การคำนวณ 17 ขั้นตอน ดังนี้ครับ
 
 // 1. กำหนด Product Array ให้ว่างและกำหนด Product ID ให้เป็น 1
 
@@ -21,16 +21,34 @@ function addProduct() {
     image: productImage,
   };
 
-  //4. เพิ่มเข้าไปในอาร์เรย์สินค้า
-  products.push(product);
+  //4. เพิ่มเข้าไปในอาร์เรย์สินค้า แต่ต้องเช็ดว่า 1. ใส่ข้อมูลตรงตาม type ไหม 2. ไฟล์รูปถูกต้องไหม (สร้างฟังก์ชันเชค ไฟล์รูปด้านล่างตามข้อ 6.)
+  //  >> ต้องขอบคุณ mini project ของพี่ลักษณ์ที่พาผมเช็คสินค้าจนละเอียดเลยครับ ^_^  นำมาปรับใช้ได้ดีเลยครับ<<
 
-  //5. เรียกใช้ฟังก์ชัน  renderProduct(product) ที่จะไปสร้างข้างล่างครับ
-
-  renderProduct(product);
-
-  // 6. ล้างค่าในฟอร์มที่ผู้ใช้เพิ่งกรอกไปเพื่อจะได้กรอกสิน้คาใหม่ได้ครับ
+  if (typeof productName !== 'string' || !productName) {
+    alert('Warning: Product ID must be a string and filled');
+  } else if (isNaN(productPrice) || productPrice <= 0) {
+    alert('Warning: Product price must be a number and filled');
+  } else if (!isValidImageUrl(productImage)) {
+    alert(
+      'Warning: Product image URL must be a file with a .jpg, .png, or .gif'
+    );
+  } else {
+    //5. ถ้าตรงตามเงื่อนไขก็ เรียกใช้ฟังก์ชัน renderProduct(product) ที่จะไปสร้างข้างล่างครับ
+    products.push(product);
+    renderProduct(product);
+  }
 
   document.getElementById('input-form').reset();
+}
+
+// 6. สร้างฟังก์ชั่นเพื่อตรวจสอบว่าไฟล์รูป "ลงท้ายด้วย" ใช้ method endswith() เช็คว่าไฟล์ลงท้ายด้วยนามสกุลเหล่านี้ไหม
+function isValidImageUrl(url) {
+  return (
+    url.endsWith('.jpg') ||
+    url.endsWith('.jpeg') ||
+    url.endsWith('.png') ||
+    url.endsWith('.gif')
+  );
 }
 
 // 7. ฟังก์ชั่นนี้เรียกใช้ตอนที่ผู้ใช้กดปุ่มเพิ่มสินค้าเข้ามายังจุดพักสินค้า
@@ -119,16 +137,16 @@ function removeProduct() {
   });
 }
 
-// สุดท้ายคำนวณหาราคารวมที่ต้องจ่าย
+//สุดท้ายคำนวณหาราคารวมที่ต้องจ่าย
 
 function accuPrice() {
-  // กำหนดราคาสินค้าททั้งหมดเป็น 0 เพราะเมื่อสินค้าถูกคำนวณตอนลูป forEach จะได้บวกเพิ่มขึ้นเรื่อย ๆ
+  // 13. กำหนดราคาสินค้าททั้งหมดเป็น 0 เพราะเมื่อสินค้าถูกคำนวณตอนลูป forEach จะได้บวกเพิ่มขึ้นเรื่อย ๆ
   let totalPrice = 0;
-  // สร้างตัวแปรเพื่อใช้ DOM เลือก div ทั้งหมดที่อยู่ในตะกร้า (dashboard-list)
+  // 14. สร้างตัวแปรเพื่อใช้ DOM เลือก div ทั้งหมดที่อยู่ในตะกร้า (dashboard-list)
   const accuedItems = document.querySelectorAll('#dashboard-list > div');
-  // ใช้ array method forEach() ในการลูปหาราคา
+  // 15. ใช้ array method forEach() ในการลูปหาราคา
   accuedItems.forEach((p) => {
-    // ใช้ parseFloat แปลงค่า string มาเป็นคา่เงิน float ทศนิยม เลือกเข้าไปยัง
+    // 16. ใช้ parseFloat แปลงค่า string มาเป็นคา่เงิน float ทศนิยม เลือกเข้าไปยัง
     // child ตัวที่ 4 [p:nth-child(4)] จาก children ทั้งหมด (children ใน แต่ละ div มี 1. checkbox 2. img 3. name 4. price)
     // และจะลบ Price: $ ออกจากการคำนวณ ด้วย .replace()
     floatedPrice = parseFloat(
@@ -137,6 +155,6 @@ function accuPrice() {
     console.log(floatedPrice);
     totalPrice += floatedPrice;
   });
-  // คำนวณออกมาเเล้วราคารวมก็จะไปแทนที่ span text element ที่มี id ว่า result ใน html ครับ
+  // 17. คำนวณออกมาเเล้วราคารวมก็จะไปแทนที่ span text element ที่มี id ว่า result ใน html ครับ
   document.querySelector('#result').textContent = totalPrice;
 }

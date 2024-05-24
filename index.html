@@ -32,7 +32,7 @@
     </div>
     <div
       id="input-form"
-      class="justify-center gap-3 p-2 px-16 bg-orange-100 border-2 md:flex md:flex-1 md:justify-between"
+      class="justify-center gap-3 p-2 px-20 bg-orange-100 border-2 md:flex md:flex-1 md:justify-center"
     >
       <div id="input-holder" class="gap-3">
         <label for="">Product Name: </label> <br />
@@ -49,7 +49,7 @@
         <label for="">Price:</label> <br />
         <input
           id="product-price"
-          type="text"
+          type="number"
           alt="product-price"
           placeholder="product pice"
           class="px-2 border-2 border-black rounded-lg"
@@ -63,11 +63,11 @@
           type="text"
           alt="product-img"
           placeholder="product image URL"
-          class="px-2 border-2 border-black rounded-lg"
+          class="px-2 border-2 border-black rounded-lg md:w-96"
         />
       </div>
 
-      <div class="flex flex-1 pl-10 md:">
+      <div class="flex flex-1 md:flex md:flex-1 md:justify-center md:w-2">
         <button
           type="button"
           onclick="addProduct()"
