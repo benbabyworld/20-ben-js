@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="" rel="stylesheet">
+     <!-- Tailwind -->
+     <script src="https://cdn.tailwindcss.com"></script>
+     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Hind+Vadodara:wght@300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poetsen+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+    * {
+        font-family: "Poetsen One", sans-serif;
+        padding: 10px;
+    }
+</style>
+
+<title>Shopping cart</title>
+
+    
+</head>
+
+<body class="">
+
+
+<div class="flex justify-center flex-1 text-xl font-bold"> Shopping cart</div>
+<div id="input-form" class="flex items-center justify-center flex-1 gap-3 p-2 bg-orange-100 border-2">
+   
+    <div id="input-holder"  class="flex justify-center gap-3">
+        <label for="">Product Name: </label>
+        <input id="product-name" type="text" alt="product-name" placeholder="your product name" class="px-2 border-2 border-black rounded-lg ">
+    </div>
+   
+    <div id="input-holder" class="flex justify-center flex-1 gap-3">
+        <label for="">Price:</label>
+        <input id="product-price" type="text" alt="product-price" placeholder="product pice" class="px-2 border-2 border-black rounded-lg ">
+    </div>
+
+    <div id="input-holder" class="flex justify-center flex-1 gap-3">
+        <label for="">Image:</label>
+        <input id="product-img" type="text" alt="product-img" placeholder="product image URL" class="px-2 border-2 border-black rounded-lg ">
+    </div>
+    <button type="button" onclick="addProduct()" id="btn-submit" class="items-center px-4 py-2 font-bold text-gray-800 bg-blue-300 rounded hover:bg-gray-400">
+        <span>Create Product</span>
+      </button>
+    
+</div>
+
+<div id="product-list" class="items-center justify-start gap-3 bg-slate-400 ">
+
+
+ 
+</div>
+
+
+
+
+<button onclick="addCart()" id="btn-cart" class="px-4 py-2 my-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+    Add to cart
+  </button>
+
+
+  <div id="dashboard-list" class="items-center justify-start gap-3 bg-slate-400 ">
+
+
+ 
+  </div>
+
+
+<div class="py-4 my-4 bg-zinc-300 ">
+    <div id="calculateTotal">
+        <button id="btn-cart" onclick="accuPrice()"  class="px-4 py-2 my-4 font-bold text-white bg-green-500 rounded hover:bg-blue-700">
+            Create Final Price
+          </button>
+    </div>
+    <div id="totalPrice" class="bg-stone-400 rounded-xl *:"> You have to pay: <span id="result"  class="bg"> 0.00 </span></div> 
+</div>
+
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
