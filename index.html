@@ -25,47 +25,50 @@
 <body class="">
 
 
-<div class="flex justify-center flex-1 text-xl font-bold"> Shopping cart</div>
-<div id="input-form" class="flex items-center justify-center flex-1 gap-3 p-2 bg-orange-100 border-2">
+<div class="flex flex-row justify-center flex-1 text-xl font-bold"> Shopping cart</div>
+<div id="input-form" class="gap-3 p-2 bg-orange-100 border-2 ">
    
-    <div id="input-holder"  class="flex justify-center gap-3">
+    <div id="input-holder"  class="gap-3 ">
         <label for="">Product Name: </label>
         <input id="product-name" type="text" alt="product-name" placeholder="your product name" class="px-2 border-2 border-black rounded-lg ">
     </div>
    
-    <div id="input-holder" class="flex justify-center flex-1 gap-3">
+    <div id="input-holder" class="gap-3 ">
         <label for="">Price:</label>
         <input id="product-price" type="text" alt="product-price" placeholder="product pice" class="px-2 border-2 border-black rounded-lg ">
     </div>
 
-    <div id="input-holder" class="flex justify-center flex-1 gap-3">
+    <div id="input-holder" class="gap-3 ">
         <label for="">Image:</label>
         <input id="product-img" type="text" alt="product-img" placeholder="product image URL" class="px-2 border-2 border-black rounded-lg ">
     </div>
-    <button type="button" onclick="addProduct()" id="btn-submit" class="items-center px-4 py-2 font-bold text-gray-800 bg-blue-300 rounded hover:bg-gray-400">
-        <span>Create Product</span>
-      </button>
+
+    <div class="flex justify-center flex-1">
+        <button type="button" onclick="addProduct()" id="btn-submit" 
+        class="px-4 py-2 font-bold text-gray-800 bg-blue-300 rounded hover:bg-gray-400">
+            <span>Create Product</span>
+          </button>
+    </div>
+  
     
 </div>
 
+
+
 <div id="product-list" class="items-center justify-start gap-3 bg-slate-400 ">
-
-
  
 </div>
 
 
 
 
-<button onclick="addCart()" id="btn-cart" class="px-4 py-2 my-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+<button id="btn-cart" onclick="addToCart()"  class="px-4 py-2 my-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
     Add to cart
   </button>
 
 
-  <div id="dashboard-list" class="items-center justify-start gap-3 bg-slate-400 ">
+  <div id="dashboard-list" class="items-center justify-start gap-3 bg-green-400 ">
 
-
- 
   </div>
 
 
@@ -75,10 +78,8 @@
             Create Final Price
           </button>
     </div>
-    <div id="totalPrice" class="bg-stone-400 rounded-xl *:"> You have to pay: <span id="result"  class="bg"> 0.00 </span></div> 
+    <div id="totalPrice" class="bg-stone-400 rounded-xl *:"> You have to pay: $<span id="result"  class="bg"> 0.00 </span></div> 
 </div>
-
-
 
 
 <script src="script.js"></script>
